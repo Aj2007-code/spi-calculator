@@ -264,28 +264,27 @@ function calculateSPI() {
     `;
 
     btn.disabled = true;
-
-    fetch("https://script.google.com/macros/s/AKfycbyAW3eWfEQYi5qHeiqZHY06Wk4gcGYSq6jPfh7J7NYSRYlF96SZRO5M30swsiFZWrK8/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            roll,
-            batch,
-            spi
-        })
+fetch("https://script.google.com/macros/s/AKfycbzkWy87S8vRD6ApqjCK5LErSPWDHrhc6ZO2NAkWQyzfzNlviwBkNrlqD826bbEx2pQHig/exec", {
+    method: "POST",
+    mode: "no-cors",   
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        roll,
+        batch,
+        spi
     })
-    .then(res => res.text())  // safer than .json()
-    .then(() => {
-        output.innerHTML += "<br>Saved ✅";
-        btn.disabled = false;
-    })
-    .catch(err => {
-        console.error(err);
-        output.innerHTML += "<br>Save Failed ❌";
-        btn.disabled = false;
-    });
+})
+.then(() => {
+    output.innerHTML += "<br>Saved ✅";
+    btn.disabled = false; 
+})
+.catch((err) => {
+    console.error(err);
+    output.innerHTML += "<br>Save Failed ❌";
+    btn.disabled = false;   // 
+});
 }
 </script>
 </body>
