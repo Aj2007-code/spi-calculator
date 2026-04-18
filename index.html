@@ -264,7 +264,15 @@ function calculateSPI() {
     `;
 
     btn.disabled = true;
-fetch("https://script.google.com/macros/s/AKfycbzkWy87S8vRD6ApqjCK5LErSPWDHrhc6ZO2NAkWQyzfzNlviwBkNrlqD826bbEx2pQHig/exec", {
+
+let grades = {};
+
+for (let i = 0; i < subs.length; i++) {
+    const g = document.getElementById("g"+i).value;
+    grades[subs[i].name] = g;
+}
+
+fetch("https://script.google.com/macros/s/AKfycbwQWjSl3gtv_v0vewq_f1jwj7M7953fWZUTFbosWcglUiUmOHhTDFkZ9gx7J2Ces7FwSA/exec", {
     method: "POST",
     mode: "no-cors",   
     headers: {
@@ -273,7 +281,8 @@ fetch("https://script.google.com/macros/s/AKfycbzkWy87S8vRD6ApqjCK5LErSPWDHrhc6Z
     body: JSON.stringify({
         roll,
         batch,
-        spi
+        spi,
+        grades
     })
 })
 .then(() => {
