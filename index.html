@@ -232,7 +232,13 @@ function loadSubjects() {
 }
 
 function calculateSPI() {
-    const roll = document.getElementById("roll").value.trim();
+    const roll = document.getElementById("roll").value.trim().toUpperCase();
+const rollPattern = /^250\d[A-Z]{2}\d{2}$/;
+
+if (!rollPattern.test(roll)) {
+    alert("Invalid Roll Number!\nFormat: 250XYYXX\nExample: 2501AB23");
+    return;
+}
     const batch = document.getElementById("batch").value;
     const output = document.getElementById("output");
     const btn = document.querySelector("button");
